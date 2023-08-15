@@ -32,7 +32,9 @@ The function when given a value of `0x079A6F9C` returns the hashed value `0x7123
     ```
     git clone CLONE_URL
     ```
-
+    
+-   **Go to your forked repo and under Actions make sure that github actions on forked repo are enabled.**
+  
 -   Make changes to the `src/main.nr` file. Add your hashing logic to `calculate_hash` function. The function should take in a value and return its hash.
 
 -   Run Tests
