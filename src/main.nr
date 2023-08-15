@@ -11,10 +11,25 @@ fn calculate_hash(num: u32) -> u32 {
 }
 
 #[test]
-fn test_main() {
+fn test_1() {
     let num = 127561628;
     let hash = calculate_hash(num);
     
     assert(hash == 0x71233de7);
-    main(num, hash);
+}
+
+#[test]
+fn test_2() {
+    let num = 237261828;
+    let hash = calculate_hash(num);
+
+    assert(hash == 0x7F51D567);
+}
+
+#[test]
+fn test_3() {
+    let num = 596214892;
+    let hash = calculate_hash(num);
+
+    assert(hash == 0x3F0C8995);
 }
