@@ -7,7 +7,17 @@ fn main(value: u32, hash_value: pub u32){
 }
 
 fn calculate_hash(num: u32) -> u32 {
+    let mut hash_value: u32 = 0x811C9DC5;
+
+    let num_field = num as Field;
+    let data = num_field.to_be_bytes(4); // Here 4 represents desired size of the resulting byte array
     
+    for i in 0..4 {
+        let product = hash_value * PRIME; 
+        hash_value = product ^ (data[i] as u32);
+    }
+
+    hash_value
 }
 
 #[test]
