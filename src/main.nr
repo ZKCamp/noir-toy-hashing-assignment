@@ -11,25 +11,30 @@ fn main(value: u32, hash_value: pub u32){
 
 fn calculate_hash(num: u32) -> u32 {
 
-    let size: u32 = 2^32;
-    let mut hash_value: u32 = 0x811C9DC5;
-    let prime = PRIME;
-    
-    let num_as_field: Field = num as Field;
-    // std::println("num_as_field:");
-    // std::println(num_as_field);
+    let size: Field = 2.pow_32(32);
+    let size_as_u32: u32 = size as u32;
+    // std::println("size:");
+    // std::println(size);
 
+    let mut hash_value: u32 = 0x811C9DC5;
+    // std::println("hash_value:");
+    // std::println(hash_value);
+
+    let prime = PRIME;
+    // std::println("prime:");
+    // std::println(prime);
+
+    let num_as_field: Field = num as Field;
     let num_as_bytes = num_as_field.to_le_bytes(32);
-    // std::println("num_as_bytes: ");
-    // std::println(num_as_bytes);
-    
-    // std::println("num_as_bytes length: ");
-    // std::println(num_as_bytes.len());
-    
-    for i in 0..32 {        
+
+    for i in 0..4 {                
+        let product: u32 = (hash_value * prime) % size_as_u32;
+        std::println("product");
+        std::println(product);
+        
         let byte_as_32: u32 = num_as_bytes[i] as u32;
-        let product = (hash_value * prime) % size;
         hash_value = product^byte_as_32;
+        
     }
     
     // std::println("num_as_bytes length: ");
@@ -41,6 +46,15 @@ fn calculate_hash(num: u32) -> u32 {
 }
 
 
+
+// #[test]
+// fn test_0() {
+//     let num = 127561628;
+//     // let hash = calculate_hash(num);
+//     calculate_hash(num);
+
+//     // assert(hash == 0x71233de7);
+// }
 
 #[test]
 fn test_1() {
@@ -74,7 +88,6 @@ fn test_3() {
 
     assert(hash == 0x3F0C8995);
 }
-
 
 #[test]
 fn test_print() {
