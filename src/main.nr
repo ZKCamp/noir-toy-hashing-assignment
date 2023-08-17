@@ -1,20 +1,30 @@
+use dep::std;
+use dep::u2b;
+
 global PRIME: u32 = 16777619;
 
 fn main(value: u32, hash_value: pub u32){
     let calculated_hash_value = calculate_hash(value);
-
     assert(calculated_hash_value == hash_value);
 }
 
 fn calculate_hash(num: u32) -> u32 {
-    
+    let size: u64 = 4294967296;         // 2^32
+    let mut hash: u64 = 2166136261;     // 0x811C9DC5
+    let bytes = u2b::u32_to_u8(num);
+
+    for byte in bytes {
+        let product = (hash * PRIME as u64) % size;
+        hash = product ^ byte as u64;
+    }
+    hash as u32
 }
 
 #[test]
 fn test_1() {
     let num = 127561628;
     let hash = calculate_hash(num);
-    
+
     assert(hash == 0x71233de7);
 }
 

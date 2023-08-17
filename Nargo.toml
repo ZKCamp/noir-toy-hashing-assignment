@@ -5,3 +5,4 @@ authors = [""]
 compiler_version = "0.9.1"
 
 [dependencies]
+u2b = { tag = "v0.3.0-nightly", git = "https://github.com/codingnirvana/noir-u2b" }
