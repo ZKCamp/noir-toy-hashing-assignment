@@ -8,14 +8,13 @@ fn main(value: u32, hash_value: pub u32){
     assert(calculated_hash_value == hash_value);
 }
 
-fn u32_to_u8(x:u32) -> [u8;4] {
-    let b1 : u8 = ((x >> 24)) as u8;
-    let b2 : u8 = ((x >> 16)) as u8;
-    let b3 : u8 = ((x >> 8)) as u8;
-    let b4 : u8 = (x) as u8;
-    [b1, b2, b3, b4]
+fn u32_to_u8(num:u32) -> [u8;4] {
+    let mut out: [u8; 4] = [0; 4];
+    for i in 0..4 {
+        out[i] = (num >> (24 - (i * 8))) as u8;
+    }
+    out
 }
-
 fn calculate_hash(num: u32) -> u32 {
     let mut hash = INITIAL_STATE;
     let transformedu8 = u32_to_u8(num);
