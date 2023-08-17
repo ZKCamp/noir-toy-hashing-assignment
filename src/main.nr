@@ -10,8 +10,7 @@ fn main(value: u32, hash_value: pub u32){
 
 fn calculate_hash(num: u32) -> u32 {
     let mut hash_value: u64 = 2166136261;
-    let f: Field = (num as Field);
-    let num_bytes: [u8] = f.to_be_bytes(4);
+    let num_bytes: [u8] = (num as Field).to_be_bytes(4);
 
     for i in 0..4 {
         let product: u64 = (hash_value * PRIME as u64) % (1 << 32);
