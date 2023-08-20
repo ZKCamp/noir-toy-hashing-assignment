@@ -7,6 +7,7 @@ fn main(value: u32, hash_value: pub u32){
 }
 
 fn calculate_hash(num: u32) -> u32 {
+    
     let num_bytes = (num as Field).to_be_bytes(4);
     let size = (2).pow_32(32) as u64;
     let mut hash_value: u64 = 0x811C9DC5;
